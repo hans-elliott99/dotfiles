@@ -36,7 +36,15 @@ function lazy_install(path)
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
- --lazy_install(lazypath)
+
+-- install lazy if it doesn't exist yet
+local f = io.open(lazypath, "r")
+if f~=nil then 
+    print("Installing Lazy package manager...")
+    lazy_install(lazypath)
+end
+io.close(f)
+
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(lazy_plugins, lazy_opts)
 

@@ -1,7 +1,7 @@
 {
-  "coq_nvim": { "branch": "coq", "commit": "272a39c8f483c0bf6137dd382363639aab83a23e" },
-  "lazy.nvim": { "branch": "main", "commit": "8077428e63feb0f3bf795d53b23ba1695b28ab0e" },
-  "nvim-tree.lua": { "branch": "master", "commit": "9c97e6449b0b0269bd44e1fd4857184dfa57bb4c" },
-  "nvim-treesitter": { "branch": "master", "commit": "c38646edf2bdfac157ca619697ecad9ea87fd469" },
-  "tokyonight.nvim": { "branch": "main", "commit": "a0abe53df53616d13da327636cb0bcac3ea7f5af" }
+  "coq_nvim": { "branch": "coq", "commit": "a547d79b27a618b80eae4809fadca9f3d1820ec4" },
+  "lazy.nvim": { "branch": "main", "commit": "26d121ea13bee96b079403cee6598f04969d4983" },
+  "nvim-tree.lua": { "branch": "master", "commit": "362ecbeed69fae91a287004619decadcb6f7c113" },
+  "nvim-treesitter": { "branch": "master", "commit": "3fe80dbecdf1fa88cf81a4d7b30ab0714f8c443a" },
+  "tokyonight.nvim": { "branch": "main", "commit": "735e94f3b36ae8b0caa30d1806eb2fa1c3619ca6" }
 }

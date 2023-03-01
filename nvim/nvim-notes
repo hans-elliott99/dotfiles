@@ -1,5 +1,4 @@
-
-Hans's NeoVim Notes
+NeoVim Notes
 
 
 Lazy - Package Manager: https://github.com/folke/lazy.nvim 
@@ -7,5 +6,12 @@ Lazy - Package Manager: https://github.com/folke/lazy.nvim
 NvimTree - File Explorer: https://github.com/nvim-tree/nvim-tree.lua 
 
 COQ - Completion: https://github.com/ms-jpq/coq_nvim
+    - requires python venv: apt install --yes -- python3-venv 
 
 TreeSitter aka TS - Syntax Highlighting: https://github.com/nvim-treesitter/nvim-treesitter
+
+Setup:
+Install latest nvim: https://github.com/neovim/neovim/wiki/Installing-Neovim
+$ git clone this repo
+$ mkdir ~/.config/nvim
+$ ln -s ~/dotfiles/nvim ~/.config/nvim #symlink
