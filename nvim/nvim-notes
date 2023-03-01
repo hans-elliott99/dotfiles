@@ -1,0 +1,11 @@
+
+Hans's NeoVim Notes
+
+
+Lazy - Package Manager: https://github.com/folke/lazy.nvim 
+
+NvimTree - File Explorer: https://github.com/nvim-tree/nvim-tree.lua 
+
+COQ - Completion: https://github.com/ms-jpq/coq_nvim
+
+TreeSitter aka TS - Syntax Highlighting: https://github.com/nvim-treesitter/nvim-treesitter
