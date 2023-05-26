@@ -1,0 +1,68 @@
+------------------------------------------
+------------------- LAZY PLUGIN MANAGER
+lazy_plugins = {
+	--TokyoNight theme
+	{"folke/tokyonight.nvim", },
+	--Icons
+	{"nvim-tree/nvim-web-devicons"},
+	--NvimTree File Explorer
+	{"nvim-tree/nvim-tree.lua",
+		requires = "nvim-tree/nvim-web-devicons"
+	},
+	--Vim-Slime to send code to terminal
+	{"jpalardy/vim-slime"},
+	--TreeSitter syntax highlighting
+	{"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate"
+	},
+	--LSP package management
+	{"williamboman/mason.nvim",
+		build = ":MasonUpdate" 
+	},
+	{"williamboman/mason-lspconfig.nvim"},
+	{"neovim/nvim-lspconfig"},
+	--LSP plugins for code completion
+	{"hrsh7th/nvim-cmp"},
+	{"hrsh7th/cmp-nvim-lsp"},
+	{"hrsh7th/cmp-nvim-lua"},
+	{"hrsh7th/cmp-nvim-lsp-signature-help"},
+	{"hrsh7th/cmp-vsnip"},
+	{"hrsh7th/cmp-path"},                              
+    {"hrsh7th/cmp-buffer"},                            
+    {"hrsh7th/vim-vsnip"},
+}
+lazy_opts = {}
+
+function lazy_install(path)
+    if not vim.loop.fs_stat(path) then
+        vim.fn.system({
+            "git",
+            "clone",
+            "--filter=blob:none",
+            "https://github.com/folke/lazy.nvim.git",
+            "--branch=stable", -- latest stable release
+            path,
+        })
+    end
+end
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+-- install lazy if it doesn't exist yet
+local f = io.open(lazypath, "r")
+if f==nil then 
+	print("Installing Lazy package manager...")
+	lazy_install(lazypath)
+end
+io.close(f)
+
+vim.opt.rtp:prepend(lazypath)
+
+local status_ok, lazy = pcall(require, "lazy")
+if not status_ok then
+	return
+end
+
+lazy.setup(lazy_plugins, lazy_opts)
+
+
