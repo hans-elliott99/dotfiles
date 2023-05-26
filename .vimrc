@@ -1,7 +1,7 @@
 syntax on
 filetype plugin indent on
 
-"plugins
+"find plugins
 set runtimepath^=~/.vim/pack/vendor/start/*
 
 "aestheric & behavior
@@ -11,22 +11,31 @@ set expandtab
 set guifont=Iosevka\ 20
 set guioptions-=m
 set guioptions-=T
-"set relativenumber
 set number
 set ignorecase
 set smartcase
 set incsearch
 set autochdir
 set cinoptions=l1
-colorscheme desert
+colorscheme slate
+highlight Normal ctermfg=grey ctermbg=black
+"switch cursor in insert mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
-"key binds for file browsing w netrw
+"PLUGIN OPTIONS
+"netrw
 nmap <leader>f :Explore<CR>
 nmap <leader><s-f> :edit.<CR>
 let g:netrw_altv = 1
 let g:netrw_dirhistmax = 0
 
-"use slime to execute code in a tmux window
+"vim-slime
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name" : get(split($TMUX, ","), 0), "target_pane" : ":.1"}
+let g:slime_no_mappings = 1
+" ctrl + m to send code
+xmap <C-m> <Plug>SlimeRegionSend
+nmap <C-m> <Plug>SlimeParagraphSend
+nmap <c-c>v <Plug>SlimeConfig
 
