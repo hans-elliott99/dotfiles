@@ -15,7 +15,7 @@ vim.g.mapleader = ','
 
 
 -- vim-slime
-map("n", "<C-m>", "<Plug>SlimeRegionSend")
+map("x", "<C-m>", "<Plug>SlimeRegionSend")
 map("n", "<C-m>", "<Plug>SlimeParagraphSend")
 map("n", "<c-c>v", "<Plug>SlimeConfig")
 

@@ -2,7 +2,7 @@
 -- 
 -- lazy.nvim: https://github.com/folke/lazy.nvim
 -- inspo: https://github.com/brainfucksec/neovim-lua/tree/main/nvim/
-
+-- `nvim` folder link should exist at ~/.config/nvim
 
 -- CORE
 -- loads (and installs if needed) the Lazy package manager
