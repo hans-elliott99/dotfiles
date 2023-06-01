@@ -1,0 +1,8 @@
+# Minimal tmux config
+
+########## Status Bar
+set -g status on
+set -g status-justify centre
+set -g status-keys vi
+set -g status-position top
+
