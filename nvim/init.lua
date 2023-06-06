@@ -4,6 +4,14 @@
 -- inspo: https://github.com/brainfucksec/neovim-lua/tree/main/nvim/
 -- `nvim` folder link should exist at ~/.config/nvim
 
+
+-- Install NeoVim:
+-- Get latest appimage from https://github.com/neovim/neovim/releases
+-- optionally rename the appimage: mv nvim.appimage ~/.NeoVim
+-- symbolic link to the nvim.appimage to put it on your path, for example:
+-- ln -s ~/.NeoVim ~/.local/bin/nvim
+-- the nvim folder goes in the ~/.config dir
+
 -- CORE
 -- loads (and installs if needed) the Lazy package manager
 require("core/lazy")

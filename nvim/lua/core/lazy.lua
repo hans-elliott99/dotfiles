@@ -17,7 +17,7 @@ lazy_plugins = {
 	},
 	--LSP package management
 	{"williamboman/mason.nvim",
-		build = ":MasonUpdate" 
+		run = ":MasonUpdate" 
 	},
 	{"williamboman/mason-lspconfig.nvim"},
 	{"neovim/nvim-lspconfig"},
@@ -33,36 +33,24 @@ lazy_plugins = {
 }
 lazy_opts = {}
 
-function lazy_install(path)
-    if not vim.loop.fs_stat(path) then
-        vim.fn.system({
-            "git",
-            "clone",
-            "--filter=blob:none",
-            "https://github.com/folke/lazy.nvim.git",
-            "--branch=stable", -- latest stable release
-            path,
-        })
-    end
-end
-
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
--- install lazy if it doesn't exist yet
-local f = io.open(lazypath, "r")
-if f==nil then 
-	print("Installing Lazy package manager...")
-	lazy_install(lazypath)
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+    print("git cloned")
 end
-io.close(f)
-
 vim.opt.rtp:prepend(lazypath)
 
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
-	return
-end
+    return
 
+local lazy = require("lazy")
 lazy.setup(lazy_plugins, lazy_opts)
-
-
