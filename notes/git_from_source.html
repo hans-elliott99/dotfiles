@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+<meta charset="UTF-8" />
+<meta name="geo.region" content="US-NY" />
+<meta name="geo.placename" content="New York" />
+<meta name="geo.position" content="40.731865;-73.983489" />
+<meta name="ICBM" content="40.731865, -73.983489" />
+
+<title>
+            How to install Git on a shared host |         Joe Maller</title>
+
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="stylesheet" type="text/css" media="all" href="https://joemaller.com/wordpress/wp-content/themes/joemaller/style.css" />
+
+		
+
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//www.dailymile.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Joe Maller &raquo; Feed" href="https://joemaller.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Joe Maller &raquo; Comments Feed" href="https://joemaller.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Joe Maller &raquo; How to install Git on a shared host Comments Feed" href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/joemaller.com\/wordpress\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.7"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='widget_dailymilewidget-css'  href='http://www.dailymile.com/stylesheets/widgets/training.css?ver=5.8.7' type='text/css' media='all' />
+<link rel='stylesheet' id='widget_dailymilewidget-addons-css'  href='https://joemaller.com/wordpress/wp-content/plugins/dailymile-widgets/dailymile-wp-addons.css?ver=5.8.7' type='text/css' media='all' />
+<link rel='stylesheet' id='widget_multi_twitter-css'  href='https://joemaller.com/wordpress/wp-content/plugins/multi-twitter_widget/multi-twitter.css?ver=5.8.7' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://joemaller.com/wordpress/wp-includes/css/dist/block-library/style.min.css?ver=5.8.7' type='text/css' media='all' />
+<script type='text/javascript' src='https://joemaller.com/wordpress/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://joemaller.com/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://joemaller.com/wordpress/wp-content/plugins/multi-twitter_widget/multi-twitter.js?ver=5.8.7' id='widget_multi_twitter-js'></script>
+<script type='text/javascript' src='https://joemaller.com/wordpress/wp-content/themes/joemaller/site.js?ver=5.8.7' id='sitescript-js'></script>
+<link rel="https://api.w.org/" href="https://joemaller.com/wp-json/" /><link rel="alternate" type="application/json" href="https://joemaller.com/wp-json/wp/v2/posts/908" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://joemaller.com/wordpress/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://joemaller.com/wordpress/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.7" />
+<link rel="canonical" href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/" />
+<link rel='shortlink' href='https://joemaller.com/?p=908' />
+<link rel="alternate" type="application/json+oembed" href="https://joemaller.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjoemaller.com%2F908%2Fhow-to-install-git-on-a-shared-host%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://joemaller.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjoemaller.com%2F908%2Fhow-to-install-git-on-a-shared-host%2F&#038;format=xml" />
+</head>
+<body>
+       
+<div id="main" class="home">
+<!-- end header -->
+<div id="leftcol"><h3 id="pagetitle"><a href="https://joemaller.com">Joe Maller<span style="color: #ddd">.com</span></a></h3><div id="blog">
+
+
+
+	
+	
+	
+<div class="post">
+	<h3 class="storytitle" id="post-908"><a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/" rel="bookmark">How to install Git on a shared host</a></h3>
+	<div class="storycontent">
+
+		<p><em>(regularly updated)</em></p>
+<p>Installing <a href="http://git-scm.com">Git</a> on a shared hosting account is simple, the installation is fast and like most things Git, it just works.</p>
+<p>This is a basic install without documentation. My main goal is to be able to push changes from remote repositories into the hosted repository, which also serves as the source directory of the live website. <a href="https://joemaller.com/990/a-web-focused-git-workflow/">Like this</a>.</p>
+<h3>Prerequisites</h3>
+<p>The only two things you absolutely must have are shell access to the account and permission to use GCC on the server. Check both with the following command:</p>
+<pre><code>$ ssh joe@webserver 'gcc --version'
+<span class="output">gcc (GCC) 4.1.2 20080704 (Red Hat 4.1.2-50)
+[...]</span></code></pre>
+<p>If GCC replies with a version number, you should be able to install Git. SSH into your server and let&#8217;s get started!</p>
+<p>If you see something like <em>/usr/bin/gcc: Permission denied</em> you don&#8217;t have access to the GCC compiler and <strong>will not</strong> be able to build the Git binaries from source. <a href="#hosting">Find another hosting company</a>.</p>
+<h3>Update your $PATH</h3>
+<p>None of this will work if you don&#8217;t update the $PATH environment variable. In most cases, this is set in <strong>.bashrc</strong>. Using <strong>.bashrc</strong> instead of <strong>.bash_profile</strong> updates $PATH for interactive and non-interactive sessions&#8211;which is necessary for remote Git commands. Edit <strong>.bashrc</strong> and add the following line:</p>
+<pre><code>export PATH=$HOME/bin:$PATH</code></pre>
+<p>Be sure &#8216;~/bin&#8217; is at the beginning since $PATH is searched from left to right; to execute local binaries first, their location has to appear first. Depending on your server&#8217;s configuration there could be a lot of other stuff in there, including duplicates.</p>
+<p>Double-check this by sourcing the file and echoing $PATH:</p>
+<pre><code>$ source ~/.bashrc
+$ echo $PATH
+<span class="output">/home/joe/bin:/usr/local/bin:/bin:/usr/bin</span></code></pre>
+<p>Verify that the remote path was updated by sending a remote command like this (from another connection):</p>
+<pre><code>$ ssh joe@webserver 'echo $PATH'
+<span class="output">/home/joe/bin:/usr/local/bin:/bin:/usr/bin</span></code></pre>
+<p>Note: Previous iterations of this page installed into the ~/opt directory. Following current Git conventions, I&#8217;m now installing into the default <code>~/bin</code>.</p>
+<h3>Installing Git</h3>
+<p>SSH into your webserver. I created a source directory to hold the files and make cleanup easier:</p>
+<pre><code>$ cd 
+$ mkdir src
+$ cd src</code></pre>
+<p>Grab the most recent source tarball from <a href="https://github.com/git/git/tags/">Github</a>. When this post was updated, the current Git release was version 1.7.10.1:</p>
+<pre><code>$ curl -LO https://github.com/git/git/tarball/v1.7.10.1</code></pre>
+<p>Untar the archive and cd into the new directory:</p>
+<pre><code>$ tar -xzvf v1.7.10.1
+$ cd git-git-9dfad1a</code></pre>
+<p>By default, Git installs into <code>~/bin</code> which is perfect for shared hosting. Earlier versions required adding a prefix to the configure script (<a href="https://joemaller.com/881/how-to-install-subversion-on-a-shared-host/">like this</a>), but none of that is necessary anymore. If you do need to change the install location of Git, just specify a prefix to the Make command as described in Git&#8217;s INSTALL file.</p>
+<p>With all that taken care of, installation is simple:</p>
+<pre><code>$ make
+$ make install
+<span class="response">[lots of words...]</span></code></pre>
+<p></code></p>
+<p>That should be it, check your installed version like this:</p>
+<pre><code>$ git --version
+<span class="response">git version 1.7.10.1</span></code></pre>
+<p>It&#8217;s now safe to delete the src folder containing the downloaded tarball and source files.</p>
+<p><a name="hosting"></a>My preferred shared hosting providers are <a href="https://techtage.com/a2-hosting-review/">A2 Hosting</a> and <a href="http://www.webfaction.com/signup?affiliate=joemaller">WebFaction</a>.</p>
+
+		
+
+	<div class="meta">
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style" addthis:url="https://joemaller.com/908/how-to-install-git-on-a-shared-host/" addthis:title="How to install Git on a shared host">
+		<a href="http://www.addthis.com/bookmark.php?v=250&amp;username=joemaller" class="addthis_button_compact">Share</a>
+		<span class="addthis_separator">|</span>
+		<a class="addthis_button_twitter"></a>
+		<a class="addthis_button_facebook"></a>
+		<a class="addthis_button_delicious"></a>
+		<a class="addthis_button_googlebuzz"></a>
+		<a class="addthis_button_digg"></a>
+		</div>
+		<!-- AddThis Button END -->
+		
+  
+		<span style="font:16px webdings;">&#xF028;</span>
+<a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comments" class="meta_comments" >66 Comments so far</a><br />		link: <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/" rel="bookmark">Aug 13, 2008 8:45 pm</a><br />
+		posted in: <a href="https://joemaller.com/category/projects/web-development/" rel="category tag">Web Development</a><br />
+		Tags: <a href="https://joemaller.com/tag/git/" rel="tag">git</a>, <a href="https://joemaller.com/tag/shared-host/" rel="tag">shared host</a>, <a href="https://joemaller.com/tag/ssh/" rel="tag">ssh</a>, <a href="https://joemaller.com/tag/svn/" rel="tag">svn</a>, <a href="https://joemaller.com/tag/unix/" rel="tag">Unix</a>, <a href="https://joemaller.com/tag/web/" rel="tag">web</a><br />		 
+	</div><!-- end META -->
+</div><!-- end STORYCONTENT -->
+
+	<!--
+
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:dc="http://purl.org/dc/elements/1.1/"
+			xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="https://joemaller.com/908/how-to-install-git-on-a-shared-host/"
+    dc:identifier="https://joemaller.com/908/how-to-install-git-on-a-shared-host/"
+    dc:title="How to install Git on a shared host"
+    trackback:ping="https://joemaller.com/908/how-to-install-git-on-a-shared-host/trackback/" />
+</rdf:RDF>
+	-->
+
+
+
+</div><!-- end POST -->
+<br />
+
+
+
+
+<!-- You can start editing here. -->
+
+	<h3 id="comments">66 Responses to &#8220;How to install Git on a shared host&#8221; <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/feed/"><img src="https://joemaller.com/wordpress/wp-content/themes/joemaller/images/feed-icon-12x12-gray.gif" width="12" height="12" alt="Comments Feed for How to install Git on a shared host" /></a></h3>
+
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+
+	<ul class="commentlist">
+		   <li class="comment even thread-even depth-1" id="li-comment-62557">
+     <div id="comment-62557">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.babbledog.com' rel='external nofollow ugc' class='url'>Gregg Lind</a></strong>
+			<span class="comment-timestamp">4:06pm on Wednesday, August 27th, 2008 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-62557" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=62557#respond' data-commentid="62557" data-postid="908" data-belowelement="comment-62557" data-respondelement="respond" data-replyto="Reply to Gregg Lind" aria-label='Reply to Gregg Lind'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.babbledog.com"><img alt='' src='https://secure.gravatar.com/avatar/39d269a3828f4cb6e99f4d23dac99055?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/39d269a3828f4cb6e99f4d23dac99055?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Hi Joe, </p>
+<p>Saw your twitters:</p>
+<p>joemaller	what are the workarounds for svn&#8217;s &#8220;Item already exists in filesystem&#8221; error message with git-svn dcommit? #git<br />
+ joemaller	git-svn dcommit is ruining my morning.</p>
+<p>git-svn routinely ruins mine :)   It mostly works, but when it doesn&#8217;t, boy oh boy!</p>
+<p>The specific answer:</p>
+<p>Go to your svn, and svn up.  Then try rebasing / dcommitting.</p>
+<p>General strategy for git-svn.  Do everything in git unless absolutely necessary.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-108099">
+     <div id="comment-108099">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://writeonly.wordpress.com' rel='external nofollow ugc' class='url'>Gregg Lind</a></strong>
+			<span class="comment-timestamp">4:39pm on Wednesday, December 31st, 2008 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-108099" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=108099#respond' data-commentid="108099" data-postid="908" data-belowelement="comment-108099" data-respondelement="respond" data-replyto="Reply to Gregg Lind" aria-label='Reply to Gregg Lind'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://writeonly.wordpress.com"><img alt='' src='https://secure.gravatar.com/avatar/58d77327a8f46041462b31c117e5c51a?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/58d77327a8f46041462b31c117e5c51a?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>My answer was dumb&#8230;. this one is much better:</p>
+<p><a href="http://www.jukie.net/~bart/blog/20080916155113" rel="nofollow ugc">http://www.jukie.net/~bart/blog/20080916155113</a></p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-124607">
+     <div id="comment-124607">
+
+		<div class="comment-meta commentmetadata">
+			<strong>draco</strong>
+			<span class="comment-timestamp">10:56pm on Saturday, February 14th, 2009 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-124607" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=124607#respond' data-commentid="124607" data-postid="908" data-belowelement="comment-124607" data-respondelement="respond" data-replyto="Reply to draco" aria-label='Reply to draco'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/8fa60cc81a4f2aabd0d68da131d7443a?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8fa60cc81a4f2aabd0d68da131d7443a?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Does one need root access to install git as described in your article? Or simply a shared host with SSH access?</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment byuser comment-author-joe bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-124802">
+     <div id="comment-124802">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.joemaller.com' rel='external nofollow ugc' class='url'>Joe</a></strong>
+			<span class="comment-timestamp">10:25am on Sunday, February 15th, 2009 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-124802" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=124802#respond' data-commentid="124802" data-postid="908" data-belowelement="comment-124802" data-respondelement="respond" data-replyto="Reply to Joe" aria-label='Reply to Joe'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.joemaller.com"><img alt='' src='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>@draco you&#8217;re never going to have root access on a shared account. Installing to your user home folder on the webserver should work everywhere, so long as the standard unix compilers are available.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-148109">
+     <div id="comment-148109">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://webevelopment2.com' rel='external nofollow ugc' class='url'>Kevin Lloyd</a></strong>
+			<span class="comment-timestamp">10:54pm on Friday, May 8th, 2009 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-148109" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=148109#respond' data-commentid="148109" data-postid="908" data-belowelement="comment-148109" data-respondelement="respond" data-replyto="Reply to Kevin Lloyd" aria-label='Reply to Kevin Lloyd'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://webevelopment2.com"><img alt='' src='https://secure.gravatar.com/avatar/68ce520e5b66160fcde234001368c327?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/68ce520e5b66160fcde234001368c327?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Many, many thanx for this tutorial.</p>
+<p>I use Github for some personal stuff, but when I work on client code, it would be lovely if I had a remote repo to upload to.</p>
+<p>I can&#8217;t thank you enough.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-162652">
+     <div id="comment-162652">
+
+		<div class="comment-meta commentmetadata">
+			<strong>neochap</strong>
+			<span class="comment-timestamp">9:40am on Tuesday, August 4th, 2009 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-162652" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=162652#respond' data-commentid="162652" data-postid="908" data-belowelement="comment-162652" data-respondelement="respond" data-replyto="Reply to neochap" aria-label='Reply to neochap'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/16c10a7dc36b765443393ef8017c4968?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/16c10a7dc36b765443393ef8017c4968?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Hi Draco,</p>
+<p>When I run the command ./configure &#8211;prefix=$HOME</p>
+<p>I get permission denied error.</p>
+<p>Do I have to change $HOME with the directory name or something?</p>
+<p>I am new to Linux and shell.. Please help..</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-167400">
+     <div id="comment-167400">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Erwin</strong>
+			<span class="comment-timestamp">5:36am on Saturday, December 5th, 2009 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-167400" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=167400#respond' data-commentid="167400" data-postid="908" data-belowelement="comment-167400" data-respondelement="respond" data-replyto="Reply to Erwin" aria-label='Reply to Erwin'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/3b5f0df9cb15bc7d80cdfa79b2f6a9be?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/3b5f0df9cb15bc7d80cdfa79b2f6a9be?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Hi, I&#8217;m trying to follow your path.<br />
+Unfortunately gcc does not seem to be accessible for me as an ordinary user:<br />
+&#8211; configure: error: no acceptable C compiler found in $PATH<br />
+&#8211;  gcc -version<br />
+   jailshell: /usr/bin/gcc: Permission denied</p>
+<p>Is there any solution to this situation?<br />
+Can I install gcc in my homedir?</p>
+<p>Thanks for replying, and thanks for the HOWTO!</p>
+<p>Erwin</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-2" id="li-comment-235005">
+     <div id="comment-235005">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Jacksmirk</strong>
+			<span class="comment-timestamp">1:43pm on Thursday, October 20th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235005" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235005#respond' data-commentid="235005" data-postid="908" data-belowelement="comment-235005" data-respondelement="respond" data-replyto="Reply to Jacksmirk" aria-label='Reply to Jacksmirk'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/d12de324aebbadfa6f0e021b2e640d8f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d12de324aebbadfa6f0e021b2e640d8f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I had this problem too. You can install git by installing in your local machine the linux distribution that your server is using (centOS 5.7 in my case) and install there git into a single folder. Then you pack the folder into a tar.gz, upload to your home directory in the server and untar. Finally you have to create the PATH in the .bashrc file.</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-3" id="li-comment-235289">
+     <div id="comment-235289">
+
+		<div class="comment-meta commentmetadata">
+			<strong>eirik</strong>
+			<span class="comment-timestamp">10:31am on Wednesday, January 9th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235289" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235289#respond' data-commentid="235289" data-postid="908" data-belowelement="comment-235289" data-respondelement="respond" data-replyto="Reply to eirik" aria-label='Reply to eirik'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Holy shit. I can&#8217;t believe that actually worked! But it did!</p>
+<p>Thanks * 1000.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt depth-3" id="li-comment-235388">
+     <div id="comment-235388">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Keith David Bershatsky</strong>
+			<span class="comment-timestamp">10:23am on Thursday, April 17th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235388" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235388#respond' data-commentid="235388" data-postid="908" data-belowelement="comment-235388" data-respondelement="respond" data-replyto="Reply to Keith David Bershatsky" aria-label='Reply to Keith David Bershatsky'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/d1defb03df1dff3f3fad263c2582c833?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d1defb03df1dff3f3fad263c2582c833?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thank you very much &#8212; greatly appreciated !!!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-169669">
+     <div id="comment-169669">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://eapen.in' rel='external nofollow ugc' class='url'>Eapen</a></strong>
+			<span class="comment-timestamp">1:55pm on Saturday, February 20th, 2010 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-169669" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=169669#respond' data-commentid="169669" data-postid="908" data-belowelement="comment-169669" data-respondelement="respond" data-replyto="Reply to Eapen" aria-label='Reply to Eapen'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://eapen.in"><img alt='' src='https://secure.gravatar.com/avatar/71bf2f33f8bfb5de8df5ddf2f53f9476?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/71bf2f33f8bfb5de8df5ddf2f53f9476?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Worked like a charm, thanks much!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-170125">
+     <div id="comment-170125">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://entropycreations.com' rel='external nofollow ugc' class='url'>evgeny</a></strong>
+			<span class="comment-timestamp">8:17pm on Saturday, March 13th, 2010 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-170125" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=170125#respond' data-commentid="170125" data-postid="908" data-belowelement="comment-170125" data-respondelement="respond" data-replyto="Reply to evgeny" aria-label='Reply to evgeny'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://entropycreations.com"><img alt='' src='https://secure.gravatar.com/avatar/80abfe35009c5076f492def2131e5332?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/80abfe35009c5076f492def2131e5332?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>thank you for this post i was missing</p>
+<p>./configure &#8211;prefix=$HOME</p>
+<p>and was getting errors, thanks to your article, i<br />
+installed it finally ;)</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-170829">
+     <div id="comment-170829">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://pfcstudio.net' rel='external nofollow ugc' class='url'>Paul</a></strong>
+			<span class="comment-timestamp">7:25pm on Wednesday, April 7th, 2010 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-170829" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=170829#respond' data-commentid="170829" data-postid="908" data-belowelement="comment-170829" data-respondelement="respond" data-replyto="Reply to Paul" aria-label='Reply to Paul'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://pfcstudio.net"><img alt='' src='https://secure.gravatar.com/avatar/c4626c3ab13e05da5570f380131d81e7?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/c4626c3ab13e05da5570f380131d81e7?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Many thanks for this nice post.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-183824">
+     <div id="comment-183824">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://drupalsteve.com' rel='external nofollow ugc' class='url'>steve oliver</a></strong>
+			<span class="comment-timestamp">12:57pm on Friday, September 17th, 2010 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-183824" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=183824#respond' data-commentid="183824" data-postid="908" data-belowelement="comment-183824" data-respondelement="respond" data-replyto="Reply to steve oliver" aria-label='Reply to steve oliver'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://drupalsteve.com"><img alt='' src='https://secure.gravatar.com/avatar/ed675d86eec49914de9e92a00a4e27d0?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/ed675d86eec49914de9e92a00a4e27d0?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thanks, Joe.  You da man!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-212863">
+     <div id="comment-212863">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.perceptum.biz/' rel='external nofollow ugc' class='url'>Bryan Gruneberg</a></strong>
+			<span class="comment-timestamp">2:25am on Thursday, January 6th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-212863" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=212863#respond' data-commentid="212863" data-postid="908" data-belowelement="comment-212863" data-respondelement="respond" data-replyto="Reply to Bryan Gruneberg" aria-label='Reply to Bryan Gruneberg'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.perceptum.biz/"><img alt='' src='https://secure.gravatar.com/avatar/e83f8c585abafc883273066fcbaf33a7?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/e83f8c585abafc883273066fcbaf33a7?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Just wanted to say thanks for this!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-216213">
+     <div id="comment-216213">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Andre</strong>
+			<span class="comment-timestamp">2:22pm on Wednesday, January 12th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-216213" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=216213#respond' data-commentid="216213" data-postid="908" data-belowelement="comment-216213" data-respondelement="respond" data-replyto="Reply to Andre" aria-label='Reply to Andre'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thanks, great post. Worked perfectly and is one more port in navigating the sea of information regarding git.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-234628">
+     <div id="comment-234628">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Bfritton</strong>
+			<span class="comment-timestamp">12:41am on Saturday, March 5th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234628" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234628#respond' data-commentid="234628" data-postid="908" data-belowelement="comment-234628" data-respondelement="respond" data-replyto="Reply to Bfritton" aria-label='Reply to Bfritton'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/5a845d4bb37f40e9086b5b02860d8e14?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5a845d4bb37f40e9086b5b02860d8e14?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thank you so much! I was getting a ton of permission denied errors from another tutorial because of an incorrectly configured path. This fixed it all.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-234843">
+     <div id="comment-234843">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Eric Famiglietti</strong>
+			<span class="comment-timestamp">3:27am on Wednesday, June 29th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234843" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234843#respond' data-commentid="234843" data-postid="908" data-belowelement="comment-234843" data-respondelement="respond" data-replyto="Reply to Eric Famiglietti" aria-label='Reply to Eric Famiglietti'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/782c8545cf355096c0b8cef4786530d7?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/782c8545cf355096c0b8cef4786530d7?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thank you so much.  This worked perfectly!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-234844">
+     <div id="comment-234844">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.webelity.com/product/drupal-web-developers' rel='external nofollow ugc' class='url'>Drupal Web Developers</a></strong>
+			<span class="comment-timestamp">7:47am on Wednesday, June 29th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234844" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234844#respond' data-commentid="234844" data-postid="908" data-belowelement="comment-234844" data-respondelement="respond" data-replyto="Reply to Drupal Web Developers" aria-label='Reply to Drupal Web Developers'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.webelity.com/product/drupal-web-developers"><img alt='' src='https://secure.gravatar.com/avatar/beee68dbaf14a7b995ad7cb508e1efcd?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/beee68dbaf14a7b995ad7cb508e1efcd?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Great post I hope that this works on my shared linux hosting package.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-234875">
+     <div id="comment-234875">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Si77hayward</strong>
+			<span class="comment-timestamp">7:45am on Saturday, July 16th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234875" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234875#respond' data-commentid="234875" data-postid="908" data-belowelement="comment-234875" data-respondelement="respond" data-replyto="Reply to Si77hayward" aria-label='Reply to Si77hayward'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/cb68a5ccb80bad84961e0567e97151e6?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb68a5ccb80bad84961e0567e97151e6?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Up and running in 2mins on Centos.  Brilliant post, thanks</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-234876">
+     <div id="comment-234876">
+
+		<div class="comment-meta commentmetadata">
+			<strong>dotandpixel</strong>
+			<span class="comment-timestamp">6:59am on Monday, July 18th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234876" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234876#respond' data-commentid="234876" data-postid="908" data-belowelement="comment-234876" data-respondelement="respond" data-replyto="Reply to dotandpixel" aria-label='Reply to dotandpixel'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/61673f8b1022f3c3750a5084973e7d13?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/61673f8b1022f3c3750a5084973e7d13?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thanks for this tutorial. Worked perfectly &#8211; except for the last step</p>
+<p>git &#8211;version<br />
+&#8211; bash: git: command not found</p>
+<p>any ideas? every other step had the same results as the tutorial.</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-2" id="li-comment-234885">
+     <div id="comment-234885">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://joemaller.com' rel='external nofollow ugc' class='url'>Joe Maller</a></strong>
+			<span class="comment-timestamp">1:16am on Wednesday, July 20th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234885" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234885#respond' data-commentid="234885" data-postid="908" data-belowelement="comment-234885" data-respondelement="respond" data-replyto="Reply to Joe Maller" aria-label='Reply to Joe Maller'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://joemaller.com"><img alt='' src='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I&#8217;m guessing you need to start a new session, or source .bashrc to update your $PATH. Did it work on your next connection?</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-234901">
+     <div id="comment-234901">
+
+		<div class="comment-meta commentmetadata">
+			<strong>kristin.e</strong>
+			<span class="comment-timestamp">10:05am on Thursday, July 21st, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234901" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234901#respond' data-commentid="234901" data-postid="908" data-belowelement="comment-234901" data-respondelement="respond" data-replyto="Reply to kristin.e" aria-label='Reply to kristin.e'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/2c781f9f7305d1727cf659dc7536e8dd?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/2c781f9f7305d1727cf659dc7536e8dd?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>What can I do if I get this:</p>
+<p>/usr/bin/gcc: Permission denied</p>
+<p>Is it possible to work around this on remote host?</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-2" id="li-comment-234902">
+     <div id="comment-234902">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://joemaller.com' rel='external nofollow ugc' class='url'>Joe Maller</a></strong>
+			<span class="comment-timestamp">12:41pm on Thursday, July 21st, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234902" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234902#respond' data-commentid="234902" data-postid="908" data-belowelement="comment-234902" data-respondelement="respond" data-replyto="Reply to Joe Maller" aria-label='Reply to Joe Maller'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://joemaller.com"><img alt='' src='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>The only workaround is to switch hosting providers. Your account doesn&#8217;t have access to the GCC compiler, so you can&#8217;t build the Git binaries from source. </p>
+<p>I updated the prerequisites section to explain this a little better.</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-3" id="li-comment-234922">
+     <div id="comment-234922">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.vipreads.com' rel='external nofollow ugc' class='url'>Siddharth Sarda</a></strong>
+			<span class="comment-timestamp">2:40am on Monday, August 8th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234922" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234922#respond' data-commentid="234922" data-postid="908" data-belowelement="comment-234922" data-respondelement="respond" data-replyto="Reply to Siddharth Sarda" aria-label='Reply to Siddharth Sarda'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.vipreads.com"><img alt='' src='https://secure.gravatar.com/avatar/a6cc54b546c9f54e7af0371660ff4ddf?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/a6cc54b546c9f54e7af0371660ff4ddf?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Not really. You can first check with your hosting provider if they can allow you access to gcc. Mine did.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment odd alt depth-2" id="li-comment-234923">
+     <div id="comment-234923">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.vipreads.com' rel='external nofollow ugc' class='url'>Siddharth Sarda</a></strong>
+			<span class="comment-timestamp">2:41am on Monday, August 8th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-234923" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=234923#respond' data-commentid="234923" data-postid="908" data-belowelement="comment-234923" data-respondelement="respond" data-replyto="Reply to Siddharth Sarda" aria-label='Reply to Siddharth Sarda'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.vipreads.com"><img alt='' src='https://secure.gravatar.com/avatar/a6cc54b546c9f54e7af0371660ff4ddf?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/a6cc54b546c9f54e7af0371660ff4ddf?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Not really. You can first check with your hosting provider if they can allow you access to gcc. Mine did.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-235015">
+     <div id="comment-235015">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://k4gdw.myopenid.com/' rel='external nofollow ugc' class='url'>Bryan</a></strong>
+			<span class="comment-timestamp">2:05am on Saturday, October 29th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235015" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235015#respond' data-commentid="235015" data-postid="908" data-belowelement="comment-235015" data-respondelement="respond" data-replyto="Reply to Bryan" aria-label='Reply to Bryan'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://k4gdw.myopenid.com/"><img alt='' src='https://secure.gravatar.com/avatar/?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo avatar-default' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I know this is a fairly old thread, but here goes. I&#8217;m connecting to a friend of mine&#8217;s box via SSH (no root access and he&#8217;s hard to get in touch with to get him to do this for me).  Everything was working great up to the first make command, at which time I get this message:</p>
+<p>[grndrgn@rtfm git-1.7.7.1]$ make<br />
+    CC daemon.o<br />
+In file included from daemon.c:1:<br />
+cache.h:19:18: error: zlib.h: No such file or directory<br />
+In file included from daemon.c:1:<br />
+cache.h:21: error: expected specifier-qualifier-list before âz_streamâ<br />
+make: *** [daemon.o] Error 1<br />
+[grndrgn@rtfm git-1.7.7.1]$</p>
+<p>Any ideas?  One of the lines indicates that it can&#8217;t find zlib.h.  So I installed a local user copy of zlib.  However, I can&#8217;t figure out how to tell git&#8217;s make program where to find it.</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-2" id="li-comment-235017">
+     <div id="comment-235017">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://joemaller.com' rel='external nofollow ugc' class='url'>Joe Maller</a></strong>
+			<span class="comment-timestamp">2:47pm on Saturday, October 29th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235017" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235017#respond' data-commentid="235017" data-postid="908" data-belowelement="comment-235017" data-respondelement="respond" data-replyto="Reply to Joe Maller" aria-label='Reply to Joe Maller'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://joemaller.com"><img alt='' src='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/97e98a58985d27d4830566d9be89c872?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Poke around in the configure file, there are options for specifying alternate file locations for the compiler. Take a look at my linked post about installing Subversion. That was really difficult and I ended up specifying alternate locations for several libraries. </p>
+<p>Or you could try compiling Git binaries on a similar machine and then uploading those.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even depth-2" id="li-comment-235021">
+     <div id="comment-235021">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Guest</strong>
+			<span class="comment-timestamp">10:10am on Wednesday, November 9th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235021" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235021#respond' data-commentid="235021" data-postid="908" data-belowelement="comment-235021" data-respondelement="respond" data-replyto="Reply to Guest" aria-label='Reply to Guest'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/7dd6d876e0f04e663ba2a61c0ec6386f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/7dd6d876e0f04e663ba2a61c0ec6386f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>You need to compile zlib the same way (configure &#8211;prefix=$HOME/opt) and provided zlib&#8217;s location to git via<br />
+./configure &#8211;prefix=$HOME/opt &#8211;with-zlib=$HOME/opt</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-3" id="li-comment-235059">
+     <div id="comment-235059">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Josiah</strong>
+			<span class="comment-timestamp">12:59pm on Tuesday, December 6th, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235059" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235059#respond' data-commentid="235059" data-postid="908" data-belowelement="comment-235059" data-respondelement="respond" data-replyto="Reply to Josiah" aria-label='Reply to Josiah'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/c9a6da771069ae71558dc3cd55dfdadb?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/c9a6da771069ae71558dc3cd55dfdadb?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I was having the same issue as Bryan, and this fixed it!  Thank you so much!!!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235031">
+     <div id="comment-235031">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Phil</strong>
+			<span class="comment-timestamp">2:24pm on Tuesday, November 22nd, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235031" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235031#respond' data-commentid="235031" data-postid="908" data-belowelement="comment-235031" data-respondelement="respond" data-replyto="Reply to Phil" aria-label='Reply to Phil'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/4b0247a6f2bf1c2dfebebc5605b15fdf?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4b0247a6f2bf1c2dfebebc5605b15fdf?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>After a bit of messing around, here&#8217;s how to install the man pages assuming your install prefix was $HOME/opt as above (substitute your version number as appropriate below):</p>
+<p>cd $HOME/opt/share/man/</p>
+<p>curl -LO &#8220;http://git-core.googlecode.com/files/git-manpages-1.7.7.4.tar.gz</p>
+<p>tar xvfz git-manpages-1.7.7.4.tar.gz</p>
+<p>You should now have man1, man5 and man7 directories in $HOME/opt/share/man</p>
+<p>The last step is to make sure man finds them (add this to .bashrc):</p>
+<p>export MANPATH=$HOME/opt/share/man:$MANPATH</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235048">
+     <div id="comment-235048">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://firemouse.myopenid.com/' rel='external nofollow ugc' class='url'>FireMouse</a></strong>
+			<span class="comment-timestamp">4:05pm on Saturday, December 3rd, 2011 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235048" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235048#respond' data-commentid="235048" data-postid="908" data-belowelement="comment-235048" data-respondelement="respond" data-replyto="Reply to FireMouse" aria-label='Reply to FireMouse'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://firemouse.myopenid.com/"><img alt='' src='https://secure.gravatar.com/avatar/?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo avatar-default' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I learned so much just from this one brief tutorial!<br />
+I&#8217;ve never permanently added to the $PATH environment using .bashrc before, and never brought in source and ran a &#8220;make&#8221; with a compiler before &#8211; and never added man pages before. . .<br />
+Of course, you have to already know your way around a little bit to handle this, But far too many tutorials are sloppy, inaccurate, and obfuscated with too much unnecessary &#8220;fluff&#8221;.  </p>
+<p>Thank you Joe for your excellent, concise and to the point tutorial!  </p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235095">
+     <div id="comment-235095">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Anonymous</strong>
+			<span class="comment-timestamp">8:56am on Wednesday, January 18th, 2012 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235095" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235095#respond' data-commentid="235095" data-postid="908" data-belowelement="comment-235095" data-respondelement="respond" data-replyto="Reply to " aria-label='Reply to '>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/100a92bf127fb31cfd90962ac793baf5?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/100a92bf127fb31cfd90962ac793baf5?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Great tutorial ~~<br />
+But I got the latest git from the official site. Currently its on 1.7.8.3.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235171">
+     <div id="comment-235171">
+
+		<div class="comment-meta commentmetadata">
+			<strong>laxxy</strong>
+			<span class="comment-timestamp">9:48am on Friday, May 18th, 2012 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235171" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235171#respond' data-commentid="235171" data-postid="908" data-belowelement="comment-235171" data-respondelement="respond" data-replyto="Reply to laxxy" aria-label='Reply to laxxy'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/dc558650fc9786dc21d4fd5f6e41b481?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/dc558650fc9786dc21d4fd5f6e41b481?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Looks like it has some dependencies that are not installed by default in my case:<br />
+In file included from http.c:1:http.h:6:23: warning: curl/curl.h: No such file or directoryhttp.h:7:23: warning: curl/easy.h: No such file or directoryIn file included from http.c:1:http.h:46: error: expected specifier-qualifier-list before ‘CURLcode’http.h:51: error: expected specifier-qualifier-list before ‘CURL’</p>
+<p>(the &#8220;curl&#8221; command itself worked fine; this is me trying to install 1.7.10.2 on RHEL 6.2; same result with 1.7.10.1</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-2" id="li-comment-235510">
+     <div id="comment-235510">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Khairuddin Muhammad</strong>
+			<span class="comment-timestamp">5:11am on Friday, May 26th, 2017 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235510" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235510#respond' data-commentid="235510" data-postid="908" data-belowelement="comment-235510" data-respondelement="respond" data-replyto="Reply to Khairuddin Muhammad" aria-label='Reply to Khairuddin Muhammad'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/285a31f27b6e0307ce1d260beec6c7df?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/285a31f27b6e0307ce1d260beec6c7df?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>i have same problem</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-235209">
+     <div id="comment-235209">
+
+		<div class="comment-meta commentmetadata">
+			<strong>mackk2</strong>
+			<span class="comment-timestamp">3:25am on Wednesday, August 15th, 2012 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235209" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235209#respond' data-commentid="235209" data-postid="908" data-belowelement="comment-235209" data-respondelement="respond" data-replyto="Reply to mackk2" aria-label='Reply to mackk2'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/b0b3fd3ad1c0a809c8dfe1b5df93cbc1?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b0b3fd3ad1c0a809c8dfe1b5df93cbc1?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Hi,<br />
+I have this error when i attempt to grab the source from github : curl: (77) Problem with the SSL CA cert (path? access rights?)<br />
+What I missed?</p>
+<p>Thanks</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-2" id="li-comment-235219">
+     <div id="comment-235219">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Sawny</strong>
+			<span class="comment-timestamp">4:43am on Sunday, August 26th, 2012 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235219" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235219#respond' data-commentid="235219" data-postid="908" data-belowelement="comment-235219" data-respondelement="respond" data-replyto="Reply to Sawny" aria-label='Reply to Sawny'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/6d626bbdd88a638e6d032e2e0d5b4be4?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6d626bbdd88a638e6d032e2e0d5b4be4?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Use -k flag. Like &#8220;curl -kOL <a href="http://github" rel="nofollow ugc">http://github</a>&#8230;&#8221;</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235225">
+     <div id="comment-235225">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://jplew.com/' rel='external nofollow ugc' class='url'>JP Lew</a></strong>
+			<span class="comment-timestamp">9:50am on Tuesday, September 18th, 2012 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235225" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235225#respond' data-commentid="235225" data-postid="908" data-belowelement="comment-235225" data-respondelement="respond" data-replyto="Reply to JP Lew" aria-label='Reply to JP Lew'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://jplew.com/"><img alt='' src='https://secure.gravatar.com/avatar/a5574e1b5fd605d47f7876a691a41b65?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/a5574e1b5fd605d47f7876a691a41b65?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>thanks Joe. easy peasy. Installed on the first try thanks to your great instructions.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235242">
+     <div id="comment-235242">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://twitter.com/theoploumis' rel='external nofollow ugc' class='url'>TheodorosPloumis</a></strong>
+			<span class="comment-timestamp">9:12am on Friday, October 19th, 2012 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235242" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235242#respond' data-commentid="235242" data-postid="908" data-belowelement="comment-235242" data-respondelement="respond" data-replyto="Reply to TheodorosPloumis" aria-label='Reply to TheodorosPloumis'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://twitter.com/theoploumis"><img alt='' src='https://secure.gravatar.com/avatar/?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo avatar-default' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Hi, thanks for this great tutorial.<br />
+My shared host with FREEBSD provides GCC but not Python. So I had to install it manually.<br />
+Then python is running from &#8220;~/opt/bin/python&#8221;.</p>
+<p>The problem is that when I run &#8220;$ make&#8221; to compile git there is an error saying:</p>
+<p>&#8220;/usr/local/bin/python: Command not found&#8221;</p>
+<p>That means that git looks for python on the default path.</p>
+<p>How can I change this default path permantly or even before compiling to avoid this error?</p>
+<p>Thanks a lot!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235284">
+     <div id="comment-235284">
+
+		<div class="comment-meta commentmetadata">
+			<strong>hilliuse</strong>
+			<span class="comment-timestamp">9:40am on Sunday, January 6th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235284" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235284#respond' data-commentid="235284" data-postid="908" data-belowelement="comment-235284" data-respondelement="respond" data-replyto="Reply to hilliuse" aria-label='Reply to hilliuse'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/a67640e2584ac9290250cb14ed339392?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/a67640e2584ac9290250cb14ed339392?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I have git installed on a DreamHost shared but I wanna upgrade the install. Anyone know how I do that?</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235297">
+     <div id="comment-235297">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.facebook.com/tinotriste' rel='external nofollow ugc' class='url'>Tino Triste</a></strong>
+			<span class="comment-timestamp">11:48pm on Friday, January 18th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235297" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235297#respond' data-commentid="235297" data-postid="908" data-belowelement="comment-235297" data-respondelement="respond" data-replyto="Reply to Tino Triste" aria-label='Reply to Tino Triste'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.facebook.com/tinotriste"><img alt='' src='https://secure.gravatar.com/avatar/dcb6731195bd408f92748da4982f86a9?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/dcb6731195bd408f92748da4982f86a9?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Worked great!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235304">
+     <div id="comment-235304">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Matt Hughes</strong>
+			<span class="comment-timestamp">2:24pm on Friday, February 1st, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235304" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235304#respond' data-commentid="235304" data-postid="908" data-belowelement="comment-235304" data-respondelement="respond" data-replyto="Reply to Matt Hughes" aria-label='Reply to Matt Hughes'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/508d7e9cfd1eecf32bbb9dbc1ae86ad8?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/508d7e9cfd1eecf32bbb9dbc1ae86ad8?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>If you get &#8220;Error expanding embedded variable.&#8221;, try running `gmake` instead of `make`.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235315">
+     <div id="comment-235315">
+
+		<div class="comment-meta commentmetadata">
+			<strong>adamvert</strong>
+			<span class="comment-timestamp">6:45am on Thursday, February 28th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235315" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235315#respond' data-commentid="235315" data-postid="908" data-belowelement="comment-235315" data-respondelement="respond" data-replyto="Reply to adamvert" aria-label='Reply to adamvert'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/dbe7c07d965afa251a012253a65832a6?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/dbe7c07d965afa251a012253a65832a6?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I tried to follow these (excellent) instructions on my shared host, but I was getting all kinds of errors about missing dependencies (openssl, curl, etc.). For anyone else with the same problem, you can switch off most of the dependencies like this:</p>
+<p>make -i NO_TCLTK=YesPlease NO_OPENSSL=YesPlease  NO_CURL=YesPlease  NO_EXPAT=YesPlease</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-2" id="li-comment-235454">
+     <div id="comment-235454">
+
+		<div class="comment-meta commentmetadata">
+			<strong>kit</strong>
+			<span class="comment-timestamp">3:39pm on Tuesday, August 25th, 2015 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235454" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235454#respond' data-commentid="235454" data-postid="908" data-belowelement="comment-235454" data-respondelement="respond" data-replyto="Reply to kit" aria-label='Reply to kit'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/f6289a6abd7899512f33f201896ac88e?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/f6289a6abd7899512f33f201896ac88e?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I had to use the same set of switches with &#8216;make install&#8217; too.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-235317">
+     <div id="comment-235317">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.facebook.com/people/Rob-Brooks/100002184533783' rel='external nofollow ugc' class='url'>Rob Brooks</a></strong>
+			<span class="comment-timestamp">10:57am on Thursday, March 7th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235317" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235317#respond' data-commentid="235317" data-postid="908" data-belowelement="comment-235317" data-respondelement="respond" data-replyto="Reply to Rob Brooks" aria-label='Reply to Rob Brooks'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.facebook.com/people/Rob-Brooks/100002184533783"><img alt='' src='https://secure.gravatar.com/avatar/?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo avatar-default' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Worked perfectly on Triple8Netorks hosting.  Thanks!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-235318">
+     <div id="comment-235318">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://bestwebhostingratings.com/hosting/bluehost-review/' rel='external nofollow ugc' class='url'>terry smith</a></strong>
+			<span class="comment-timestamp">1:06am on Monday, March 11th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235318" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235318#respond' data-commentid="235318" data-postid="908" data-belowelement="comment-235318" data-respondelement="respond" data-replyto="Reply to terry smith" aria-label='Reply to terry smith'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://bestwebhostingratings.com/hosting/bluehost-review/"><img alt='' src='https://secure.gravatar.com/avatar/866e3bdae4b08b4e18793cb1e505dfbb?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/866e3bdae4b08b4e18793cb1e505dfbb?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Hey thanks for such nice explanation.I have solved all my problem!!!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-235352">
+     <div id="comment-235352">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Kevin</strong>
+			<span class="comment-timestamp">9:51pm on Monday, July 29th, 2013 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235352" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235352#respond' data-commentid="235352" data-postid="908" data-belowelement="comment-235352" data-respondelement="respond" data-replyto="Reply to Kevin" aria-label='Reply to Kevin'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/26345185c33bf61cf9b40109da8d69b0?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/26345185c33bf61cf9b40109da8d69b0?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>keep getting stuff like &#8220;http.c:1438: error: âstruct http_object_requestâ has no member named âslotâ&#8221; when i try to make. Also, I don&#8217;t know what &#8220;Be sure ‘~/bin’ is at the beginning&#8221; means. The beginning of what, exactly?</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-235391">
+     <div id="comment-235391">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Rahul Venkat</strong>
+			<span class="comment-timestamp">5:13am on Sunday, May 4th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235391" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235391#respond' data-commentid="235391" data-postid="908" data-belowelement="comment-235391" data-respondelement="respond" data-replyto="Reply to Rahul Venkat" aria-label='Reply to Rahul Venkat'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/99ba155cf62319bbb9cba2c7fcd1445f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/99ba155cf62319bbb9cba2c7fcd1445f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thanks a lot for the post. It worked like a charm!!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-235392">
+     <div id="comment-235392">
+
+		<div class="comment-meta commentmetadata">
+			<strong>TweetsOfSumit</strong>
+			<span class="comment-timestamp">4:35am on Friday, May 9th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235392" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235392#respond' data-commentid="235392" data-postid="908" data-belowelement="comment-235392" data-respondelement="respond" data-replyto="Reply to TweetsOfSumit" aria-label='Reply to TweetsOfSumit'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/bc81a66ecf47987c4f5a49da597c93ed?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/bc81a66ecf47987c4f5a49da597c93ed?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I&#8217;m just too noob for this. You should mention putty. And here: &#8220;Edit .bashrc and add the following line:&#8221; &#8211; how to edit a file? I know i know i&#8217;m a noob but still&#8230; :-/</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1" id="li-comment-235416">
+     <div id="comment-235416">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.bilalakil.me/' rel='external nofollow ugc' class='url'>Bilal Akil</a></strong>
+			<span class="comment-timestamp">12:40am on Wednesday, November 12th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235416" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235416#respond' data-commentid="235416" data-postid="908" data-belowelement="comment-235416" data-respondelement="respond" data-replyto="Reply to Bilal Akil" aria-label='Reply to Bilal Akil'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.bilalakil.me/"><img alt='' src='https://secure.gravatar.com/avatar/8fbcc1549468867effa0faa392015033?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8fbcc1549468867effa0faa392015033?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I&#8217;d like to add my two cents by highlighting this line: &#8220;Using .bashrc instead of .bash_profile updates $PATH for interactive and non-interactive sessions–which is necessary for remote Git commands.&#8221;</p>
+<p>Do pay attention to that &#8211; it could save you a lot of time.</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-2" id="li-comment-235437">
+     <div id="comment-235437">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Sergii Shapoval</strong>
+			<span class="comment-timestamp">8:11am on Saturday, March 28th, 2015 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235437" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235437#respond' data-commentid="235437" data-postid="908" data-belowelement="comment-235437" data-respondelement="respond" data-replyto="Reply to Sergii Shapoval" aria-label='Reply to Sergii Shapoval'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/ca09abfbfcfdaff76b5a87f96c9fa74b?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/ca09abfbfcfdaff76b5a87f96c9fa74b?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>here is a good response if someone can&#8217;t understand how to create .bashrc<br />
+<a href="http://stackoverflow.com/a/20384224/4594690" rel="nofollow ugc">http://stackoverflow.com/a/20384224/4594690</a></p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235417">
+     <div id="comment-235417">
+
+		<div class="comment-meta commentmetadata">
+			<strong>raymundo</strong>
+			<span class="comment-timestamp">2:36am on Thursday, November 13th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235417" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235417#respond' data-commentid="235417" data-postid="908" data-belowelement="comment-235417" data-respondelement="respond" data-replyto="Reply to raymundo" aria-label='Reply to raymundo'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/92ba52962acb876cee9e6c7a1b8b35ac?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/92ba52962acb876cee9e6c7a1b8b35ac?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thank you, this was perfect!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235423">
+     <div id="comment-235423">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Artem</strong>
+			<span class="comment-timestamp">3:08am on Tuesday, December 16th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235423" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235423#respond' data-commentid="235423" data-postid="908" data-belowelement="comment-235423" data-respondelement="respond" data-replyto="Reply to Artem" aria-label='Reply to Artem'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/db824789dc6190837dbd255cd8662290?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/db824789dc6190837dbd255cd8662290?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>I&#8217;m trying to execute &#8220;ssh myhost@myhost &#8216;gcc &#8211;version'&#8221; and get back &#8216;host key verification failed&#8217;<br />
+ What should I do?<br />
+По русски тоже можно ответить)</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235425">
+     <div id="comment-235425">
+
+		<div class="comment-meta commentmetadata">
+			<strong>mong</strong>
+			<span class="comment-timestamp">9:33pm on Friday, December 26th, 2014 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235425" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235425#respond' data-commentid="235425" data-postid="908" data-belowelement="comment-235425" data-respondelement="respond" data-replyto="Reply to mong" aria-label='Reply to mong'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/be428811228e85056fcf8f76f45408ae?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/be428811228e85056fcf8f76f45408ae?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>http.h:6:23 warning: curl/curl.h: No such file or directory</p>
+<p>can you help me with this?</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-2" id="li-comment-235477">
+     <div id="comment-235477">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Luan Nguyen</strong>
+			<span class="comment-timestamp">5:48pm on Sunday, February 14th, 2016 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235477" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235477#respond' data-commentid="235477" data-postid="908" data-belowelement="comment-235477" data-respondelement="respond" data-replyto="Reply to Luan Nguyen" aria-label='Reply to Luan Nguyen'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/dc9c11e5ae412810a41c30a45e292a7c?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/dc9c11e5ae412810a41c30a45e292a7c?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>It might be too late but hope to help.<br />
+Just download the curl tar and set its path for git configure, ie:</p>
+<p>cd ~/<br />
+mkdir src<br />
+cd src<br />
+wget <a href="https://github.com/git/git/archive/v2.7.1.tar.gz" rel="nofollow ugc">https://github.com/git/git/archive/v2.7.1.tar.gz</a><br />
+wget <a href="https://curl.haxx.se/download/curl-7.47.1.tar.gz" rel="nofollow ugc">https://curl.haxx.se/download/curl-7.47.1.tar.gz</a><br />
+tar -xzvf v2.7.1.tar.gz<br />
+tar -xzvf curl-7.47.1.tar.gz </p>
+<p>cd git-2.7.1/<br />
+make configure<br />
+./configure &#8211;prefix=$HOME &#8211;with-curl=~/src/curl-7.47.1</p>
+<p>make<br />
+make install</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment odd alt depth-3" id="li-comment-235478">
+     <div id="comment-235478">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://twitter.com/mattsince87' rel='external nofollow ugc' class='url'>Matt Litherland</a></strong>
+			<span class="comment-timestamp">10:36am on Monday, February 22nd, 2016 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235478" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235478#respond' data-commentid="235478" data-postid="908" data-belowelement="comment-235478" data-respondelement="respond" data-replyto="Reply to Matt Litherland" aria-label='Reply to Matt Litherland'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://twitter.com/mattsince87"><img alt='' src='https://secure.gravatar.com/avatar/f99398b13e146e52bbab0caaef90550c?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/f99398b13e146e52bbab0caaef90550c?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>i get this&#8230; make: *** [po/build/locale/bg/LC_MESSAGES/git.mo] Error 127<br />
+any ideas?</p>
+		</div>
+	</div>
+
+<ul class="children">
+   <li class="comment even depth-4" id="li-comment-235479">
+     <div id="comment-235479">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Luan Nguyen</strong>
+			<span class="comment-timestamp">10:47am on Monday, February 22nd, 2016 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235479" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235479#respond' data-commentid="235479" data-postid="908" data-belowelement="comment-235479" data-respondelement="respond" data-replyto="Reply to Luan Nguyen" aria-label='Reply to Luan Nguyen'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/dc9c11e5ae412810a41c30a45e292a7c?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/dc9c11e5ae412810a41c30a45e292a7c?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Any errors above that message?<br />
+Maybe missed gettext, FYI &#8211;<br />
+<a href="http://stackoverflow.com/questions/9500898/compiler-error-msgfmt-command-not-found-when-compiling-git-on-a-shared-hosting" rel="nofollow ugc">http://stackoverflow.com/questions/9500898/compiler-error-msgfmt-command-not-found-when-compiling-git-on-a-shared-hosting</a></p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment odd alt depth-3" id="li-comment-235480">
+     <div id="comment-235480">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://www.huitacadigital.com' rel='external nofollow ugc' class='url'>David Emilio Sierra</a></strong>
+			<span class="comment-timestamp">10:59pm on Saturday, March 5th, 2016 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235480" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235480#respond' data-commentid="235480" data-postid="908" data-belowelement="comment-235480" data-respondelement="respond" data-replyto="Reply to David Emilio Sierra" aria-label='Reply to David Emilio Sierra'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://www.huitacadigital.com"><img alt='' src='https://secure.gravatar.com/avatar/5027e1002f81d79d77b47ece39084580?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5027e1002f81d79d77b47ece39084580?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Luan, Thanks a lot, your post was helpful !!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even depth-3" id="li-comment-235482">
+     <div id="comment-235482">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Dusan</strong>
+			<span class="comment-timestamp">12:40pm on Saturday, April 16th, 2016 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235482" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235482#respond' data-commentid="235482" data-postid="908" data-belowelement="comment-235482" data-respondelement="respond" data-replyto="Reply to Dusan" aria-label='Reply to Dusan'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/6ef3edde5c2fb1fd591e8be8201327c7?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6ef3edde5c2fb1fd591e8be8201327c7?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Luan, your answer helped me a lot! This solution solved my problem. Thanks!</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt depth-3" id="li-comment-235512">
+     <div id="comment-235512">
+
+		<div class="comment-meta commentmetadata">
+			<strong><a href='http://technoguyfication.com' rel='external nofollow ugc' class='url'>Technoguyfication</a></strong>
+			<span class="comment-timestamp">10:57pm on Monday, July 17th, 2017 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235512" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235512#respond' data-commentid="235512" data-postid="908" data-belowelement="comment-235512" data-respondelement="respond" data-replyto="Reply to Technoguyfication" aria-label='Reply to Technoguyfication'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href="http://technoguyfication.com"><img alt='' src='https://secure.gravatar.com/avatar/64ce5284de86721ea2a63d8371ae2a27?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/64ce5284de86721ea2a63d8371ae2a27?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Late to the party but this worked for me! I also had to add the -i flag to my make install to get it to work, however</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235430">
+     <div id="comment-235430">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Sage</strong>
+			<span class="comment-timestamp">5:08pm on Tuesday, January 20th, 2015 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235430" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235430#respond' data-commentid="235430" data-postid="908" data-belowelement="comment-235430" data-respondelement="respond" data-replyto="Reply to Sage" aria-label='Reply to Sage'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/1078d3bafe54c38de5116c9a8e847015?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/1078d3bafe54c38de5116c9a8e847015?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thanks for these great instructions! Only thing you might add for newbies is how to access .bashrc and edit it (ie. nano). Also perhaps how to remove directories. Us Windows users have to look this stuff up. Thanks again.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235434">
+     <div id="comment-235434">
+
+		<div class="comment-meta commentmetadata">
+			<strong>ctwellman</strong>
+			<span class="comment-timestamp">12:54pm on Wednesday, February 18th, 2015 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235434" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235434#respond' data-commentid="235434" data-postid="908" data-belowelement="comment-235434" data-respondelement="respond" data-replyto="Reply to ctwellman" aria-label='Reply to ctwellman'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/d97f1211dd70926d6ee0b1182b76225b?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d97f1211dd70926d6ee0b1182b76225b?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Old post but great &#8212; unfortunately i&#8217;m stuck at &#8220;Verify that the remote path was updated by sending a remote command like this (from another connection):&#8221;</p>
+<p>i get the expected output when logged in to the remote host. but when i send the remote command i get &#8220;/usr/local/sbin&#8230;&#8221; back as opposed to &#8220;/home/ctwellma/bin&#8221;  Thoughts?</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235438">
+     <div id="comment-235438">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Chris A</strong>
+			<span class="comment-timestamp">11:29am on Wednesday, April 8th, 2015 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235438" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235438#respond' data-commentid="235438" data-postid="908" data-belowelement="comment-235438" data-respondelement="respond" data-replyto="Reply to Chris A" aria-label='Reply to Chris A'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/973ebbf06ddd1abe448a5ce887a50075?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/973ebbf06ddd1abe448a5ce887a50075?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>make command is not found, what do I do?</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-235464">
+     <div id="comment-235464">
+
+		<div class="comment-meta commentmetadata">
+			<strong>GP_hockeyhappens</strong>
+			<span class="comment-timestamp">7:34pm on Friday, October 23rd, 2015 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235464" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235464#respond' data-commentid="235464" data-postid="908" data-belowelement="comment-235464" data-respondelement="respond" data-replyto="Reply to GP_hockeyhappens" aria-label='Reply to GP_hockeyhappens'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/839835eb11eeb78b4dea73c499407713?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/839835eb11eeb78b4dea73c499407713?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Is there any instructions for installing Grav without shell access? The people that will end running this if we decide to use it barely know how to turn on their computer and I won&#8217;t be around to administer.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1" id="li-comment-235486">
+     <div id="comment-235486">
+
+		<div class="comment-meta commentmetadata">
+			<strong>James Gardner</strong>
+			<span class="comment-timestamp">6:26am on Wednesday, May 18th, 2016 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-235486" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=235486#respond' data-commentid="235486" data-postid="908" data-belowelement="comment-235486" data-respondelement="respond" data-replyto="Reply to James Gardner" aria-label='Reply to James Gardner'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/1e7d70eacc5b9287c14c6fb965dc953e?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/1e7d70eacc5b9287c14c6fb965dc953e?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thank you, thank you, thank you! Worked a treat on CentOS.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-236342">
+     <div id="comment-236342">
+
+		<div class="comment-meta commentmetadata">
+			<strong>Y</strong>
+			<span class="comment-timestamp">12:18pm on Wednesday, December 28th, 2022 <a href="https://joemaller.com/908/how-to-install-git-on-a-shared-host/#comment-236342" title="link to this comment">#</a></span>
+			<span class="comment-reply-link">
+				<a rel='nofollow' class='comment-reply-link' href='https://joemaller.com/908/how-to-install-git-on-a-shared-host/?replytocom=236342#respond' data-commentid="236342" data-postid="908" data-belowelement="comment-236342" data-respondelement="respond" data-replyto="Reply to Y" aria-label='Reply to Y'>Reply</a>			</span>
+					</div>
+
+		
+		<div class="comment-author vcard">
+			<a href=""><img alt='' src='https://secure.gravatar.com/avatar/d36eef32625367a43da63a9909ba716e?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d36eef32625367a43da63a9909ba716e?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/></a>
+		</div>
+
+		<div class='comment-body'>
+			<p>Thank you, thank you, worked on a RedHat.</p>
+		</div>
+	</div>
+
+</li><!-- #comment-## -->
+			</ul>
+
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+ 
+
+
+<div id="respond">
+
+<h3>Leave a Reply</h3>
+
+<div class="cancel-comment-reply">
+	<small><a rel="nofollow" id="cancel-comment-reply-link" href="/908/how-to-install-git-on-a-shared-host/#respond" style="display:none;">Click here to cancel reply.</a></small>
+</div>
+
+
+<form action="https://joemaller.com/wordpress/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type='hidden' name='comment_post_ID' value='908' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="d252041a4e" /></p><input type="hidden" id="ak_js" name="ak_js" value="121"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea>
+</form>
+
+</div>
+
+
+
+
+
+
+<br style="clear: both; margin-top: 2em;" />
+
+</div></div>
+
+
+
+
+<div id="sidebar">
+
+
+<div id="extensible_tagcloud-304342371" class="widget widget_extensible_tagcloud">
+<h3 class="widget-title">Tags</h3>
+<div class='tagcloud'>
+<a href="https://joemaller.com/tag/adobe/" class="tag-cloud-link tag-link-25 tag-link-position-1" style="color:#55b; font-size:14pt" aria-label="Adobe (4 items)">Adobe</a>
+<a href="https://joemaller.com/tag/apple/" class="tag-cloud-link tag-link-446 tag-link-position-2" style="color:#55b; font-size:14pt" aria-label="Apple (19 items)">Apple</a>
+<a href="https://joemaller.com/tag/applescript/" class="tag-cloud-link tag-link-6 tag-link-position-3" style="color:#55b; font-size:14pt" aria-label="AppleScript (18 items)">AppleScript</a>
+<a href="https://joemaller.com/tag/barefoot-running/" class="tag-cloud-link tag-link-358 tag-link-position-4" style="color:#55b; font-size:14pt" aria-label="barefoot running (11 items)">barefoot running</a>
+<a href="https://joemaller.com/tag/born-to-run/" class="tag-cloud-link tag-link-326 tag-link-position-5" style="color:#55b; font-size:14pt" aria-label="Born to Run (7 items)">Born to Run</a>
+<a href="https://joemaller.com/tag/bugs/" class="tag-cloud-link tag-link-155 tag-link-position-6" style="color:#55b; font-size:14pt" aria-label="bugs (6 items)">bugs</a>
+<a href="https://joemaller.com/tag/coffee/" class="tag-cloud-link tag-link-19 tag-link-position-7" style="color:#55b; font-size:14pt" aria-label="coffee (4 items)">coffee</a>
+<a href="https://joemaller.com/tag/feet/" class="tag-cloud-link tag-link-354 tag-link-position-8" style="color:#55b; font-size:14pt" aria-label="feet (7 items)">feet</a>
+<a href="https://joemaller.com/tag/final-cut-pro/" class="tag-cloud-link tag-link-12 tag-link-position-9" style="color:#55b; font-size:14pt" aria-label="Final Cut Pro (6 items)">Final Cut Pro</a>
+<a href="https://joemaller.com/tag/fxscript/" class="tag-cloud-link tag-link-5 tag-link-position-10" style="color:#55b; font-size:14pt" aria-label="FXScript (7 items)">FXScript</a>
+<a href="https://joemaller.com/tag/git/" class="tag-cloud-link tag-link-131 tag-link-position-11" style="color:#55b; font-size:14pt" aria-label="git (7 items)">git</a>
+<a href="https://joemaller.com/tag/google/" class="tag-cloud-link tag-link-17 tag-link-position-12" style="color:#55b; font-size:14pt" aria-label="Google (8 items)">Google</a>
+<a href="https://joemaller.com/tag/hanukkah/" class="tag-cloud-link tag-link-66 tag-link-position-13" style="color:#55b; font-size:14pt" aria-label="Hanukkah (7 items)">Hanukkah</a>
+<a href="https://joemaller.com/tag/health/" class="tag-cloud-link tag-link-330 tag-link-position-14" style="color:#55b; font-size:14pt" aria-label="Health (5 items)">Health</a>
+<a href="https://joemaller.com/tag/iphone/" class="tag-cloud-link tag-link-23 tag-link-position-15" style="color:#55b; font-size:14pt" aria-label="iPhone (31 items)">iPhone</a>
+<a href="https://joemaller.com/tag/iphoto/" class="tag-cloud-link tag-link-445 tag-link-position-16" style="color:#55b; font-size:14pt" aria-label="iPhoto (10 items)">iPhoto</a>
+<a href="https://joemaller.com/tag/itransmogrify/" class="tag-cloud-link tag-link-94 tag-link-position-17" style="color:#55b; font-size:14pt" aria-label="itransmogrify (5 items)">itransmogrify</a>
+<a href="https://joemaller.com/tag/itunes/" class="tag-cloud-link tag-link-107 tag-link-position-18" style="color:#55b; font-size:14pt" aria-label="iTunes (5 items)">iTunes</a>
+<a href="https://joemaller.com/tag/javascript/" class="tag-cloud-link tag-link-447 tag-link-position-19" style="color:#55b; font-size:14pt" aria-label="JavaScript (8 items)">JavaScript</a>
+<a href="https://joemaller.com/tag/mac/" class="tag-cloud-link tag-link-52 tag-link-position-20" style="color:#55b; font-size:14pt" aria-label="mac (16 items)">mac</a>
+<a href="https://joemaller.com/tag/mac-os-x/" class="tag-cloud-link tag-link-444 tag-link-position-21" style="color:#55b; font-size:14pt" aria-label="Mac OS X (4 items)">Mac OS X</a>
+<a href="https://joemaller.com/tag/mailapp/" class="tag-cloud-link tag-link-152 tag-link-position-22" style="color:#55b; font-size:14pt" aria-label="mail.app (4 items)">mail.app</a>
+<a href="https://joemaller.com/tag/new-york-city/" class="tag-cloud-link tag-link-9 tag-link-position-23" style="color:#55b; font-size:14pt" aria-label="New York City (23 items)">New York City</a>
+<a href="https://joemaller.com/tag/nyc/" class="tag-cloud-link tag-link-84 tag-link-position-24" style="color:#55b; font-size:14pt" aria-label="nyc (16 items)">nyc</a>
+<a href="https://joemaller.com/tag/php/" class="tag-cloud-link tag-link-174 tag-link-position-25" style="color:#55b; font-size:14pt" aria-label="php (4 items)">php</a>
+<a href="https://joemaller.com/tag/running/" class="tag-cloud-link tag-link-24 tag-link-position-26" style="color:#55b; font-size:14pt" aria-label="Running (29 items)">Running</a>
+<a href="https://joemaller.com/tag/school/" class="tag-cloud-link tag-link-18 tag-link-position-27" style="color:#55b; font-size:14pt" aria-label="School (4 items)">School</a>
+<a href="https://joemaller.com/tag/sed/" class="tag-cloud-link tag-link-103 tag-link-position-28" style="color:#55b; font-size:14pt" aria-label="sed (4 items)">sed</a>
+<a href="https://joemaller.com/tag/september-11th/" class="tag-cloud-link tag-link-162 tag-link-position-29" style="color:#55b; font-size:14pt" aria-label="September 11th (4 items)">September 11th</a>
+<a href="https://joemaller.com/tag/unix/" class="tag-cloud-link tag-link-16 tag-link-position-30" style="color:#55b; font-size:14pt" aria-label="Unix (14 items)">Unix</a>
+<a href="https://joemaller.com/tag/vffs/" class="tag-cloud-link tag-link-335 tag-link-position-31" style="color:#55b; font-size:14pt" aria-label="Vibram FiveFingers (6 items)">Vibram FiveFingers</a>
+<a href="https://joemaller.com/tag/web/" class="tag-cloud-link tag-link-140 tag-link-position-32" style="color:#55b; font-size:14pt" aria-label="web (10 items)">web</a>
+<a href="https://joemaller.com/tag/web-design/" class="tag-cloud-link tag-link-164 tag-link-position-33" style="color:#55b; font-size:14pt" aria-label="web design (7 items)">web design</a>
+<a href="https://joemaller.com/tag/wordpress/" class="tag-cloud-link tag-link-26 tag-link-position-34" style="color:#55b; font-size:14pt" aria-label="WordPress (4 items)">WordPress</a>
+<a href="https://joemaller.com/tag/wwdc/" class="tag-cloud-link tag-link-134 tag-link-position-35" style="color:#55b; font-size:14pt" aria-label="WWDC (7 items)">WWDC</a><!-- Tag Cloud generated in 0.006 seconds. -->
+</div>
+</div>
+
+<div id="text-3" class="widget widget_text"><h3 class="widget-title">Contact</h3>			<div class="textwidget"><span style="font-size: 1.25em"><a href="mailto:joe+joemaller+com"></a></span><script type="text/javascript" charset="utf-8">
+	(function(){
+		var d = document.links;
+		for(i=0;i<d.length;i++){
+			if(d[i].protocol == 'mailto:'){
+				d[i].href = d[i].href.replace(/^mailto:([^+]+)\+([^+]+)(?:\+|\.)?([^+?]+)?/,'mailto:$1@$2.$3').replace(/\.$/,'');
+				if (!d[i].childNodes.length) { // add email address to no-text links
+					d[i].appendChild(document.createTextNode(d[i].href.substring(7)));
+				}
+			}
+		}
+	})()
+</script></div>
+		</div><div id="dailymilewidget-6" class="widget widget_dailymilewidget"><html>
+<head><title>404 Not Found</title></head>
+<body>
+<h1>404 Not Found</h1>
+<ul>
+<li>Code: NoSuchKey</li>
+<li>Message: The specified key does not exist.</li>
+<li>Key: people/joemaller/widgets/distance/mini.js</li>
+<li>RequestId: 4CRFAP2VGRRQZEQW</li>
+<li>HostId: UgItJOl+wS4QEoaAjUyhct0+Uh8VGoRNM00puzkfKZod7hL2gc8WtHiGEeRqwU723I+05pc7egA=</li>
+</ul>
+<hr/>
+</body>
+</html>
+</div><div id="dailymilewidget-3" class="widget widget_dailymilewidget"><html>
+<head><title>404 Not Found</title></head>
+<body>
+<h1>404 Not Found</h1>
+<ul>
+<li>Code: NoSuchKey</li>
+<li>Message: The specified key does not exist.</li>
+<li>Key: people/joemaller/training/widget.js</li>
+<li>RequestId: Z909YEKAP2Q5HRJE</li>
+<li>HostId: vtXU2IY/YhJnGu5ejUNh7FA66+po/c1H9tQlddMKf1BOHUJhliAuzIeqmB1A3m9LS3VSS1yOpmM=</li>
+</ul>
+<hr/>
+</body>
+</html>
+
+
+<!-- Dailymile API error. ($entry_decoded->at not found) -->
+
+</div><div id="dailymilewidget-5" class="widget widget_dailymilewidget"><html>
+<head><title>404 Not Found</title></head>
+<body>
+<h1>404 Not Found</h1>
+<ul>
+<li>Code: NoSuchKey</li>
+<li>Message: The specified key does not exist.</li>
+<li>Key: people/joemaller/events/widget.js</li>
+<li>RequestId: Z906WFMPME3R3MRT</li>
+<li>HostId: GqWlCC97hatNtWuQh1IZjIMvU2XvuM0M2lYz/2wXS5HIvJp6VyF+lF8ie70PIQBVDn0veKL2L4Q=</li>
+</ul>
+<hr/>
+</body>
+</html>
+</div><div id="dailymilewidget-4" class="widget widget_dailymilewidget"><html>
+<head><title>404 Not Found</title></head>
+<body>
+<h1>404 Not Found</h1>
+<ul>
+<li>Code: NoSuchKey</li>
+<li>Message: The specified key does not exist.</li>
+<li>Key: people/joemaller/events/widget.js</li>
+<li>RequestId: Z908JA268MR7H9A6</li>
+<li>HostId: kWLkD3KAAdGP53ZavzsAx9lnm3FukYkbEZIJXLo4ga0wbPxTBwhW0I6eI443bKA2Q7rMSXQc/Ak=</li>
+</ul>
+<hr/>
+</body>
+<li class="race"><h3 class="title"><a href="http://www.dailymile.com/people/joemaller/events" title="Race Schedule | dailymile">No upcoming events.</a></h3></li>
+</html>
+</div><div id="multi_twitter-304343831" class="widget widget_multi_twitter">
+<h3 class="widget-title"><a href='http://twitter.com/joemaller' title='follow me on Twitter'>Twitter</a></h3>
+<div id=widget_multi_twitter-304343831 class="widget_multi_twitter"><div class="user"><a href="http://twitter.com/joemaller" title="Twitter"><img src="http://static.twitter.com/images/default_profile_normal.png" alt="Twitter Profile Imagejoemaller"/></a><a href="http://twitter.com/joemaller" title="Twitter">@joemaller</a></div>
+<ul class="tweets"></ul></div>		<script type="text/javascript" charset="utf-8">
+			var multi_twitter_304343831 = new multi_twitter('#widget_multi_twitter-304343831', 'joemaller', 5, 'on', 'on');
+		</script>
+		</div>
+<!-- SIDEBAR LINKS -->
+
+
+
+
+
+
+	<div class="widget">
+	<h3>Other Stuff</h3>
+	<ul>
+								</ul>
+	</div>
+
+	<div class="widget">
+	<h3>Projects</h3>
+	<ul>
+		<li><a href="http://joemaller.com/js-singleroll.shtml" rel="me" title="My original JavaScript rollover tutorial, from 1996 (Last updated December 31, 1969 7:00 pm)">Basic Javascript Rollovers</a><br />
+My original JavaScript rollover tutorial, from 1996</li>
+<li><a href="http://joemaller.com/js-mailer.shtml" title=" (Last updated December 31, 1969 7:00 pm)">Email Address Protection</a></li>
+	</ul>
+	</div>
+
+	<div class="widget">
+	<h3>iPhoto</h3>
+	<ul>
+		<li><a href="http://www.joemaller.com/iphoto/" rel="me" title="A set of utility scripts for adjusting dates in your iPhoto Library (Last updated December 31, 1969 7:00 pm)">Joe’s iPhoto AppleScripts for Date Manipulation</a><br />
+A set of utility scripts for adjusting dates in your iPhoto Library</li>
+	</ul>
+	</div>
+
+
+
+
+
+
+
+<!-- POSTS BY CATEGORY -->
+
+<div class="widget"> 
+<h3>Categories</h3>
+
+	<ul>
+
+		<li class="cat-item cat-item-11"><a href="https://joemaller.com/category/apple/">Apple</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="https://joemaller.com/category/delicious/" title="Almost-daily collected links from del.icio.us">del.icio.us</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="https://joemaller.com/category/mac-os-x/">Mac OS X</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://joemaller.com/category/misc/">misc.</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://joemaller.com/category/projects/">Projects</a>
+<ul class='children'>
+	<li class="cat-item cat-item-4"><a href="https://joemaller.com/category/projects/joes-filters/">Joe&#039;s Filters</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://joemaller.com/category/projects/web-development/">Web Development</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-22"><a href="https://joemaller.com/category/quips/">quips</a>
+</li>
+
+	</ul>
+
+
+</div>
+
+
+
+<!-- POSTS BY DATE -->
+
+<div class="widget">
+<h3>Archives</h3>
+   <label for="s">Search:</label>	
+
+   <form id="searchform" method="get" action="/index.php">
+
+	<div>
+
+		<input type="text" name="s" id="s" size="15" /><br />
+
+		<input type="submit" value="Search" />
+
+	</div>
+
+	</form>
+ 	<ul>
+	 	<li><a href='https://joemaller.com/date/2015/'>2015</a>&nbsp;(1)</li>
+	<li><a href='https://joemaller.com/date/2014/'>2014</a>&nbsp;(2)</li>
+	<li><a href='https://joemaller.com/date/2013/'>2013</a>&nbsp;(6)</li>
+	<li><a href='https://joemaller.com/date/2012/'>2012</a>&nbsp;(12)</li>
+	<li><a href='https://joemaller.com/date/2011/'>2011</a>&nbsp;(16)</li>
+	<li><a href='https://joemaller.com/date/2010/'>2010</a>&nbsp;(30)</li>
+	<li><a href='https://joemaller.com/date/2009/'>2009</a>&nbsp;(14)</li>
+	<li><a href='https://joemaller.com/date/2008/'>2008</a>&nbsp;(28)</li>
+	<li><a href='https://joemaller.com/date/2007/'>2007</a>&nbsp;(76)</li>
+	<li><a href='https://joemaller.com/date/2006/'>2006</a>&nbsp;(71)</li>
+	<li><a href='https://joemaller.com/date/2005/'>2005</a>&nbsp;(141)</li>
+	<li><a href='https://joemaller.com/date/2004/'>2004</a>&nbsp;(26)</li>
+	<li><a href='https://joemaller.com/date/2003/'>2003</a>&nbsp;(91)</li>
+	<li><a href='https://joemaller.com/date/2002/'>2002</a>&nbsp;(177)</li>
+	<li><a href='https://joemaller.com/date/2001/'>2001</a>&nbsp;(90)</li>
+ 	</ul>
+</div>
+
+
+
+
+<a href="http://www.digits.com"><img src="http://counter.digits.com/wc/-d/-z/5/-c/0/-b/FFFFFF/-f/999966/blktoe" width="50" height="9" border="0" alt="digits.com counter" align="middle" /></a> 
+
+
+<div id="eXTReMe"><a href="http://extremetracking.com/open?login=joemalle">
+<img src="http://t1.extreme-dm.com/i.gif" style="border: 0;"
+height="38" width="41" id="EXim" alt="eXTReMe Tracker" /></a>
+<script type="text/javascript"><!--
+var EXlogin='joemalle' // Login
+var EXvsrv='s11' // VServer
+EXs=screen;EXw=EXs.width;navigator.appName!="Netscape"?
+EXb=EXs.colorDepth:EXb=EXs.pixelDepth;EXsrc="src";
+navigator.javaEnabled()==1?EXjv="y":EXjv="n";
+EXd=document;EXw?"":EXw="na";EXb?"":EXb="na";
+EXd.write("<img "+EXsrc+"=http://e2.extreme-dm.com",
+"/"+EXvsrv+".g?login="+EXlogin+"&amp;",
+"jv="+EXjv+"&amp;j=y&amp;srw="+EXw+"&amp;srb="+EXb+"&amp;",
+"l="+escape(EXd.referrer)+" height=1 width=1>");//-->
+</script><noscript><div id="neXTReMe"><img height="1" width="1" alt=""
+src="http://e2.extreme-dm.com/s11.g?login=joemalle&amp;j=n&amp;jv=n" />
+</div></noscript></div>
+<script type="text/javascript" charset="utf-8">
+	window.setTimeout(function(){jQuery('#eXTReMe img').css({'width' : 20, 'height': 20})}, 1000);
+</script>
+
+
+<!--WEBBOT bot="HTMLMarkup" startspan ALT="Site Meter" -->
+<script type="text/javascript" language="JavaScript">var site="sm5joemaller"</script>
+<script type="text/javascript" language="JavaScript1.2" src="http://sm5.sitemeter.com/js/counter.js?site=sm5joemaller">
+</script>
+<noscript>
+<a href="http://sm5.sitemeter.com/stats.asp?site=sm5joemaller" target="_top">
+<img src="http://sm5.sitemeter.com/meter.asp?site=sm5joemaller" alt="Site Meter" border="0" /></a>
+</noscript>
+<!-- Copyright (c)2005 Site Meter -->
+<!--WEBBOT bot="HTMLMarkup" Endspan -->
+
+<br />
+<a href='/referer_log.php'>Referers</a></div><!-- end elsewise -->
+
+<div style='width: 180px;'><script type='text/javascript' src='https://joemaller.com/wordpress/wp-includes/js/comment-reply.min.js?ver=5.8.7' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://joemaller.com/wordpress/wp-includes/js/wp-embed.min.js?ver=5.8.7' id='wp-embed-js'></script>
+<script defer type='text/javascript' src='https://joemaller.com/wordpress/wp-content/plugins/akismet/_inc/form.js?ver=4.1.12' id='akismet-form-js'></script>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=joemaller"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2501271-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script></div>
+</body>
+</html>

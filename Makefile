@@ -8,7 +8,7 @@ min: clean vim tmux_min
 
 vim:
 	@echo ""
-	@echo "*MAKING VIM*"
+	@echo "*LINKING VIM*"
 	@cd ~ && \
 		echo "***In home (~) directory." && \
 		ln -s ~/$(DOTFILES)/vim_files/vim .vim && \
@@ -21,7 +21,7 @@ vim:
 
 tmux:
 	@echo ""
-	@echo "*MAKING TMUX*"
+	@echo "*LINKING TMUX*"
 	@cd ~ && \
 		echo "***In home (~) directory." && \
 		ln -s ~/$(DOTFILES)/tmux_files/tmux.conf .tmux.conf && \
@@ -29,7 +29,7 @@ tmux:
 
 tmux_min:
 	@echo ""
-	@echo "*MAKING TMUX (minimal configuration)*"
+	@echo "*LINKING TMUX (minimal configuration)*"
 	@cd ~ && \
 		echo "***In home (~) directory." && \
 		ln -s ~/$(DOTFILES)/tmux_files/tmux.conf.min .tmux.conf && \
@@ -37,7 +37,7 @@ tmux_min:
 
 nvim:
 	@echo ""
-	@echo "*MAKING NVIM*"
+	@echo "*LINKNG NVIM*"
 	@cd ~/.config && \
 		echo "***In config (~/.config) directory." && \
 		ln -s ~/$(DOTFILES)/nvim_files/nvim nvim && \

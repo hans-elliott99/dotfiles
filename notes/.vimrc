@@ -1,0 +1,43 @@
+syntax on
+filetype plugin indent on
+
+"find plugins
+set runtimepath^=~/.vim/pack/vendor/start/*
+
+"aestheric & behavior
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set guifont=Iosevka\ 20
+set guioptions-=m
+set guioptions-=T
+set number
+set ignorecase
+set smartcase
+set incsearch
+set autochdir
+set cinoptions=l1
+colorscheme slate
+highlight Normal ctermfg=grey ctermbg=black
+highlight Comment ctermfg=green 
+highlight ColorColumn ctermbg=darkblue
+"switch cursor in insert mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+"PLUGIN OPTIONS
+"netrw
+nmap <leader>f :Explore<CR>
+nmap <leader><s-f> :edit.<CR>
+let g:netrw_altv = 1
+let g:netrw_dirhistmax = 0
+
+"vim-slime
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name" : "default", "target_pane" : "1"}
+let g:slime_no_mappings = 1
+" ctrl + m to send code
+xmap <c-\> <Plug>SlimeRegionSend
+nmap <c-\> <Plug>SlimeParagraphSend
+xmap <c-c>v <Plug>SlimeConfig
+
