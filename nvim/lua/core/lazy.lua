@@ -51,6 +51,6 @@ vim.opt.rtp:prepend(lazypath)
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
     return
+end
 
-local lazy = require("lazy")
-lazy.setup(lazy_plugins, lazy_opts)
+require("lazy").setup(lazy_plugins, lazy_opts)

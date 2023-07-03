@@ -30,4 +30,3 @@ require("lsp/lspconfig")
 -- code completion config using nvim-cmp
 require("lsp/completion")
 
-
