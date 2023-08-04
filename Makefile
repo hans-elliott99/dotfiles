@@ -38,6 +38,7 @@ tmux_min:
 nvim:
 	@echo ""
 	@echo "*LINKNG NVIM*"
+	@mkdir -p ~/.config
 	@cd ~/.config && \
 		echo "***In config (~/.config) directory." && \
 		ln -s ~/$(DOTFILES)/nvim_files/nvim nvim && \
