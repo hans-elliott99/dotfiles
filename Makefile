@@ -1,8 +1,11 @@
+#
+#TODO: modularize - put each pkgs setup instructions within their dirs
+
 DOTFILES := $(shell basename $(CURDIR))
 
 .ONESHELL:
 
-default: clean vim tmux nvim
+default: clean vim tmux nvim r
 
 min: clean vim tmux_min
 
@@ -44,8 +47,19 @@ nvim:
 		ln -s ~/$(DOTFILES)/nvim_files/nvim nvim && \
 		echo "***Added ~/.config/nvim"
 
+r:
+	@echo ""
+	@echo "*ADDING R FILES*"
+	@cd ~ && \
+		echo "***In home (~) directory." && \
+		ln -s ~/$(DOTFILES)/R_files/Rprofile .Rprofile && \
+		ln -s ~/$(DOTFILES)/R_files/lintr .lintr && \
+		echo "***Added ~/.Rprofile, ~/.lintr"
+
 clean:
 	rm -rf ~/.vim
 	rm -f ~/.vimrc
 	rm -f ~/.tmux.conf*
 	rm -f ~/.config/nvim
+	rm -f ~/.Rprofile
+	rm -f ~/.lintr
