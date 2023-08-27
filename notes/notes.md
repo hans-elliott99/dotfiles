@@ -1,4 +1,4 @@
-# Notes
+# Misc Notes
 
 ## Installing git from source on shared host:
 - https://joemaller.com/908/how-to-install-git-on-a-shared-host/
@@ -16,4 +16,8 @@
 - In "gcc-build", perform "../gcc-XXX/configure -prefix=/usr/local"
 - Do "make" and "make install"
 - [optional] Add "/usr/local/lib" or "/usr/local/lib64" into your LD_LIBRARY_PATH and LD_RUN_PATH
+
+## /usr/bin/bash vs /bin/bash vs /usr/bin/env bash
+- https://unix.stackexchange.com/questions/206350/what-is-the-difference-if-i-start-bash-with-bin-bash-or-usr-bin-env-bash
+
 
